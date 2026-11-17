@@ -20,10 +20,35 @@
         document.documentElement.classList.toggle("dark", dark)
       } catch {}
     </script>
-    <script type="module" crossorigin src="./assets/index-NTtkqQdK.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-D5Qgrv4X.css">
+    <style>
+      /* Native app only: the launch screen again, drawn by the page, so the native splash can hand over without a visible
+         change. src/boot.ts then moves the logo into the header. Must match ios/App/App/Base.lproj/LaunchScreen.storyboard. */
+      #boot { display: none; }
+      .native-boot #boot { display: block; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; }
+      #boot .boot-bg { position: absolute; inset: 0; background: linear-gradient(180deg, #f06a1d, #d24a06); }
+      #boot svg { position: absolute; left: 20vw; top: 50%; width: 60vw; transform: translateY(-50%); color: #ffffff; }
+      @media (prefers-color-scheme: dark) {
+        #boot .boot-bg { background: linear-gradient(180deg, #2a2a2c, #121212); }
+        #boot svg { color: #f06a1d; }
+      }
+    </style>
+    <script>
+      try {
+        if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+          document.documentElement.classList.add("native-boot")
+          // Safety net: never keep the splash longer than 10 seconds, whatever happens while loading.
+          setTimeout(() => {
+            const b = document.getElementById("boot")
+            if (b) { b.remove(); try { window.Capacitor.Plugins.SplashScreen.hide() } catch {} }
+          }, 10000)
+        }
+      } catch {}
+    </script>
+    <script type="module" crossorigin src="./assets/index-DZOMewlD.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B1Lfi7sp.css">
   </head>
   <body>
+    <div id="boot" aria-hidden="true"><div class="boot-bg"></div><svg viewBox="0 0 147.39 50.4" fill="currentColor"><path d="M0,0h10.87l6.77,33.19h.14L27,0h9.79l9.22,33.19h.14L52.92,0h10.87l-10.66,50.4h-11.31L31.97,15.84h-.14l-9.86,34.56h-11.23L0,0Z"/><path d="M86.26,41.12h-24.91v-9.65L79.92,0h16.99v31.47h5.9v9.65h-5.9v9.29h-10.66v-9.29ZM86.26,31.47V7.49h-.14l-14.11,23.98h14.26Z"/><path d="M107.78,0h17.5c13.39,0,22.11,9.58,22.11,25.2s-8.78,25.2-22.18,25.2h-17.43V0ZM125.21,40.61c7.2,0,11.52-5.33,11.52-15.41s-4.32-15.41-11.52-15.41h-6.77v30.82h6.77Z"/></svg></div>
     <div id="root"></div>
   </body>
 </html>
