@@ -22,12 +22,12 @@
     </script>
     <style>
       /* Native app only: the launch screen again, drawn by the page, so the native splash can hand over without a visible
-         change: white with the orange wordmark. On the very first open the elf plays its intro on the shelf
+         change: plain white; the orange wordmark comes in after the elf (or right away without the intro). On the very first open the elf plays its intro on the shelf
          (src/boot.ts), then the logo moves into the header. Must match ios/App/App/Base.lproj/LaunchScreen.storyboard. */
       #boot { display: none; }
       .native-boot #boot { display: block; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; }
       #boot .boot-bg { position: absolute; inset: 0; background: #ffffff; }
-      #boot svg { position: absolute; left: 25.57vw; top: 26.82%; width: 48.85vw; transform: translateY(-50%); color: #e2580c; }
+      #boot svg { position: absolute; left: 25.57vw; top: 26.82%; width: 48.85vw; transform: translateY(-50%); color: #e2580c; opacity: 0; }
       #boot .boot-elf { position: absolute; left: 21.5vw; top: calc(62.9% - 47.07vw); width: 57vw; aspect-ratio: 264 / 226;
         background: url(./intro/elf.webp) 0 0 / 600% 400% no-repeat; }
     </style>
@@ -45,7 +45,7 @@
         }
       } catch {}
     </script>
-    <script type="module" crossorigin src="./assets/index-DQL6Dtet.js"></script>
+    <script type="module" crossorigin src="./assets/index-BKM0pKsq.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CyWCiXHy.css">
   </head>
   <body>
