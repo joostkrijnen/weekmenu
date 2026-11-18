@@ -35,8 +35,8 @@
       try {
         if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
           document.documentElement.classList.add("native-boot")
-          // First open: start fetching the elf's frames right away, so the intro can start as soon as the app is ready.
-          if (!localStorage.getItem("shelfie:intro")) new Image().src = "./intro/elf.webp"
+          // Until onboarding is done the intro plays: start fetching the elf's frames right away.
+          if (!localStorage.getItem("shelfie:onboarded")) new Image().src = "./intro/elf.webp"
           // Safety net: never keep the splash longer than 10 seconds, whatever happens while loading.
           setTimeout(() => {
             const b = document.getElementById("boot")
@@ -45,7 +45,7 @@
         }
       } catch {}
     </script>
-    <script type="module" crossorigin src="./assets/index-D3Y3J97g.js"></script>
+    <script type="module" crossorigin src="./assets/index-LLBTMuu_.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CyWCiXHy.css">
   </head>
   <body>
